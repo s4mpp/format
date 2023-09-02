@@ -2,7 +2,7 @@
 
 namespace S4mpp\Format\Providers;
 
-use S4mpp\Format;
+use S4mpp\Format\Format;
 use Illuminate\Support\ServiceProvider;
 
 class FormatServiceProvider extends ServiceProvider
@@ -20,8 +20,6 @@ class FormatServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->singleton('format', function () {
-        //     return new Format;
-        // });
+        $this->app->singleton('format', fn() => new Format);
     }
 }

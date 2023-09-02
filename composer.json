@@ -4,8 +4,7 @@
     "authors": [
         {
             "name": "Sam P",
-            "email": "S4mpp.dev@gmail.com",
-            "role": "Developer"
+            "email": "S4mpp.dev@gmail.com"
         }
     ],
     "autoload": {
@@ -14,8 +13,8 @@
         }
     },
     "require": {
-        "php": "^7.4|^8.0",
-        "illuminate/support": "^8.0"
+        "php": "^8.1",
+        "laravel/framework": "^8.0|^9.0|^10.0"
     },
     "extra": {
         "laravel": {
@@ -23,7 +22,7 @@
                 "S4mpp\\Format\\Providers\\FormatServiceProvider"
             ],
             "aliases": {
-                "Format": "S4mpp\\Format\\FormatFacade"
+                "Format": "S4mpp\\Format\\Facades\\Format"
             }
         }
     }

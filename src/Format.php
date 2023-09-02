@@ -75,11 +75,11 @@ class Format
 
     public static function removeAccents($word = null): ?string
     {
-        $search  = array('À','Á','Â','Ã','Ä','Å','Æ','Ç','È','É','Ê','Ë','Ì','Í','Î','Ï','Ð','Ñ','Ò','Ó','Ô','Õ','Ö','Ø','Ù','Ú','Û','Ü','Ý','ß','à','á','â','ã','ä','å','æ','ç','è','é','ê','ë','ì','í','î','ï','ñ','ò','ó','ô','õ','ö','ø','ù','ú','û','ü','ý','ÿ');
-	    
-        $replace = array('A','A','A','A','A','A','AE','C','E','E','E','E','I','I','I','I','D','N','O','O','O','O','O','O','U','U','U','U','Y','s','a','a','a','a','a','a','ae','c','e','e','e','e','i','i','i','i','n','o','o','o','o','o','o','u','u','u','u','y','y');
-
-        return str_replace($search, $replace, $word);
+        if (is_null($word)) {
+            return null;
+        }
+    
+        return iconv('UTF-8', 'ASCII//TRANSLIT', $word);
     }
 
     public static function numberToFloat($value = null)
@@ -89,9 +89,7 @@ class Format
         }
     
         $cleanedValue = preg_replace('/[^0-9]/', '', $value);
-    
-        // $floatValue = str_replace(',', '.', $cleanedValue);
-    
+        
         return ($cleanedValue / 100);
     }
 }
