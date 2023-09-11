@@ -6,7 +6,8 @@ class Format
 {
     public static function clean($value = null): ?string
     {
-        if ($value === null) {
+        if($value === null)
+        {
             return null;
         }
     
@@ -15,33 +16,38 @@ class Format
 
     public static function cpfCnpj($number = null, bool $obscure = false): ?string
     {
-        if (is_null($number)) {
+        if(is_null($number))
+        {
             return null;
         }
     
         $total_str = strlen($number);
     
-        if ($total_str == 11) {
-            $formattedNumber = vsprintf('%s%s%s.%s%s%s.%s%s%s-%s%s', str_split($number));
+        if($total_str == 11)
+        {
+            $formatted_number = vsprintf('%s%s%s.%s%s%s.%s%s%s-%s%s', str_split($number));
             
-            if ($obscure) {
-                $formattedNumber = substr_replace($formattedNumber, '***', 4, 3);
-                $formattedNumber = substr_replace($formattedNumber, '***', 8, 3);
+            if($obscure)
+            {
+                $formatted_number = substr_replace($formatted_number, '***', 4, 3);
+                $formatted_number = substr_replace($formatted_number, '***', 8, 3);
             }
             
-            return $formattedNumber;
+            return $formatted_number;
         }
     
-        if ($total_str == 14) {
-            $formattedNumber = vsprintf('%s%s.%s%s%s.%s%s%s/%s%s%s%s-%s%s', str_split($number));
+        if($total_str == 14)
+        {
+            $formatted_number = vsprintf('%s%s.%s%s%s.%s%s%s/%s%s%s%s-%s%s', str_split($number));
             
-            if ($obscure) {
-                $formattedNumber = substr_replace($formattedNumber, '***', 3, 3);
-                $formattedNumber = substr_replace($formattedNumber, '***', 7, 3);
-                $formattedNumber = substr_replace($formattedNumber, '****', 11, 4);
+            if($obscure)
+            {
+                $formatted_number = substr_replace($formatted_number, '***', 3, 3);
+                $formatted_number = substr_replace($formatted_number, '***', 7, 3);
+                $formatted_number = substr_replace($formatted_number, '****', 11, 4);
             }
             
-            return $formattedNumber;
+            return $formatted_number;
         }
     
         return $number;
@@ -49,13 +55,14 @@ class Format
 
     public static function cep($cep = null): ?string
     {
-        if (is_null($cep) || !is_numeric($cep) || strlen($cep) !== 8) {
+        if(is_null($cep) || !is_numeric($cep) || strlen($cep) !== 8)
+        {
             return $cep;
         }
     
-        $formattedCep = sprintf('%s%s.%s%s%s-%s%s%s', ...str_split($cep));
+        $formatted_cep = sprintf('%s%s.%s%s%s-%s%s%s', ...str_split($cep));
     
-        return $formattedCep;
+        return $formatted_cep;
     }
 
     public static function currency(float $value = null, bool $convert_cents = true): ?string
@@ -75,7 +82,8 @@ class Format
 
     public static function removeAccents($word = null): ?string
     {
-        if (is_null($word)) {
+        if(is_null($word))
+        {
             return null;
         }
     
@@ -84,12 +92,11 @@ class Format
 
     public static function numberToFloat($value = null)
     {
-        if (is_null($value)) {
+        if(is_null($value))
+        {
             return null;
         }
     
-        $cleanedValue = preg_replace('/[^0-9]/', '', $value);
-        
-        return ($cleanedValue / 100);
+        return preg_replace('/[^0-9]/', '', $value);
     }
 }
