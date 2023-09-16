@@ -96,7 +96,7 @@ class Format
         {
             return null;
         }
-    
-        return preg_replace('/[^0-9]/', '', $value);
+
+        return str_replace(['.', ','], ['', '.'], $value);
     }
 }
